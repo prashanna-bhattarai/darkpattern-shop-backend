@@ -14,11 +14,17 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  }),
-);
+    cors({
+        origin: (origin, callback) => {
+            // allow requests with no origin (curl, server-to-server, mobile apps)
+            if (!origin || allowedOrigins.includes(origin)) {
+                return callback(null, true);
+            }
+            return callback(new Error("Not allowed by CORS"));
+        },
+        credentials: true
+    })
+)
 
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 
