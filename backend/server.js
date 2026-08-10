@@ -13,6 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+console.log("CLIENT_URL:", JSON.stringify(process.env.CLIENT_URL));
 app.use(
   cors({
     origin: process.env.CLIENT_URL || "http://localhost:5173",
@@ -31,7 +32,9 @@ app.use("/api/cart", cartRoutes);
 // frontend or from Postman.
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(err.status || 500).json({ message: err.message || "Server error" });
+  res
+    .status(err.status || 500)
+    .json({ message: err.message || "Server error" });
 });
 
 const PORT = process.env.PORT || 5000;
