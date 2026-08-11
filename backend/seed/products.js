@@ -278,4 +278,291 @@ export const buildProducts = () => [
     reviewCount: 94,
     intendedDarkPatterns: [],
   },
+  // ---------------------------------------------------------------
+  // FALSE URGENCY (Hindi)
+  // ---------------------------------------------------------------
+  {
+    name: "ब्लूटूथ स्पीकर मिनी",
+    slug: "bluetooth-speaker-mini-hi",
+    description:
+      "Powerful 360-degree sound in a pocket-sized speaker, 12-hour battery. " +
+      "आज ही खरीदें -- सेल आज रात खत्म हो रही है!",
+    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600",
+    category: "Electronics",
+    priceCents: 189900,
+    originalPriceCents: 349900,
+    urgencyBadge: "⚡ सेल आज रात खत्म!",
+    saleEndsAt: hoursFromNow(5),
+    stockCount: 45,
+    rating: 4.5,
+    reviewCount: 340,
+    intendedDarkPatterns: ["false_urgency"],
+  },
+
+  // ---------------------------------------------------------------
+  // SCARCITY (Nepali)
+  // ---------------------------------------------------------------
+  {
+    name: "स्मार्ट ट्राभल लगेज ब्याग",
+    slug: "smart-travel-luggage-bag-ne",
+    description:
+      "Hardshell 4-wheel luggage with a built-in USB charging port. " +
+      "स्टकमा जम्मा १ वटा मात्र बाँकी छ!",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+    category: "Fashion",
+    priceCents: 459900,
+    stockCount: 1,
+    lowStockBadge: "स्टकमा १ वटा मात्र बाँकी!",
+    rating: 4.6,
+    reviewCount: 88,
+    intendedDarkPatterns: ["scarcity"],
+  },
+
+  // ---------------------------------------------------------------
+  // SOCIAL PROOF (Hindi)
+  // ---------------------------------------------------------------
+  {
+    name: "प्रेशर कुकर डीलक्स",
+    slug: "pressure-cooker-deluxe-hi",
+    description:
+      "5-litre stainless steel pressure cooker with a 10-year warranty. " +
+      "पिछले 24 घंटों में 212 लोगों ने खरीदा -- 4.9 रेटिंग 3,400+ ग्राहकों से।",
+    image: "https://images.unsplash.com/photo-1585515320310-259814833e62?w=600",
+    category: "Home",
+    priceCents: 279900,
+    rating: 4.9,
+    reviewCount: 3412,
+    purchasesLast24h: 212,
+    viewingNowCount: 34,
+    stockCount: 90,
+    intendedDarkPatterns: ["social_proof"],
+  },
+
+  // ---------------------------------------------------------------
+  // FORCED ACTION (Hindi)
+  // ---------------------------------------------------------------
+  {
+    name: "आयुर्वेदिक हेयर केयर सेट",
+    slug: "ayurvedic-hair-care-set-hi",
+    description:
+      "5-piece ayurvedic hair oil, shampoo, and conditioner routine. " +
+      "कीमत देखने के लिए मुफ्त खाता बनाएं।",
+    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600",
+    category: "Beauty",
+    priceCents: 149900,
+    requiresAccountToViewPrice: true,
+    forcedNewsletterOptIn: true,
+    stockCount: 60,
+    rating: 4.4,
+    reviewCount: 210,
+    intendedDarkPatterns: ["forced_action"],
+  },
+
+  // ---------------------------------------------------------------
+  // OBSTRUCTION (Nepali, subscription)
+  // ---------------------------------------------------------------
+  {
+    name: "योग स्टुडियो सदस्यता",
+    slug: "yoga-studio-membership-ne",
+    description:
+      "Unlimited live and on-demand yoga classes with certified instructors. " +
+      "जुनसुकै बेला रद्द गर्न सकिन्छ।",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600",
+    category: "Subscription",
+    priceCents: 99900,
+    isSubscription: true,
+    obstructedCancellation: true,
+    obstructionNote:
+      "सदस्यता रद्द गर्न कृपया हाम्रो सहयोग लाइनमा फोन गर्नुहोस् (सोम-शुक्र, बिहान ९ - साँझ ५) " +
+      "र आफ्नो प्रतिनिधिलाई रद्द कोड YOGA-2026 भन्नुहोस्। इमेल वा खाता सेटिङबाट रद्द गर्न सकिँदैन।",
+    rating: 4.2,
+    reviewCount: 76,
+    intendedDarkPatterns: ["obstruction"],
+  },
+
+  // ---------------------------------------------------------------
+  // SNEAKING (Nepali)
+  // ---------------------------------------------------------------
+  {
+    name: "ट्रेकिङ ब्याकप्याक ४०L",
+    slug: "trekking-backpack-40l-ne",
+    description:
+      "Waterproof 40-litre trekking backpack with a rain cover and hip belt. " +
+      "हिमालयी ट्रेकहरूको लागि बनाइएको।",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+    category: "Fitness",
+    priceCents: 349900,
+    hiddenFeeCents: 39900,
+    hiddenFeeLabel: "अनिवार्य ह्यान्डलिङ शुल्क",
+    preCheckedAddon: {
+      enabled: true,
+      name: "प्राथमिकता प्रशोधन (सिफारिस गरिएको)",
+      priceCents: 19900,
+    },
+    stockCount: 40,
+    rating: 4.6,
+    reviewCount: 189,
+    intendedDarkPatterns: ["sneaking"],
+  },
+
+  // ---------------------------------------------------------------
+  // CONFIRMSHAMING (Nepali)
+  // ---------------------------------------------------------------
+  {
+    name: "गेमिङ माउस प्रो",
+    slug: "gaming-mouse-pro-ne",
+    description:
+      "16000 DPI optical gaming mouse with customizable RGB lighting.",
+    image: "https://images.unsplash.com/photo-1527814050087-3793815479db?w=600",
+    category: "Electronics",
+    priceCents: 199900,
+    declineButtonText: "पैसा जोगाउन मन छैन, धन्यवाद",
+    stockCount: 55,
+    rating: 4.7,
+    reviewCount: 402,
+    intendedDarkPatterns: ["confirmshaming"],
+  },
+
+  // ---------------------------------------------------------------
+  // COMBO: False Urgency + Scarcity (Hindi)
+  // ---------------------------------------------------------------
+  {
+    name: "राइस कुकर स्मार्ट",
+    slug: "rice-cooker-smart-hi",
+    description:
+      "Smart rice cooker with 12 pre-set programs and keep-warm function. " +
+      "स्टॉक में सिर्फ 2 बचे हैं -- आज की कीमत आधी रात को खत्म!",
+    image: "https://images.unsplash.com/photo-1585515320310-259814833e62?w=600",
+    category: "Home",
+    priceCents: 219900,
+    originalPriceCents: 399900,
+    urgencyBadge: "🔥 आज की कीमत आधी रात को खत्म!",
+    saleEndsAt: hoursFromNow(11),
+    stockCount: 2,
+    lowStockBadge: "सिर्फ 2 बचे हैं!",
+    rating: 4.5,
+    reviewCount: 267,
+    intendedDarkPatterns: ["false_urgency", "scarcity"],
+  },
+
+  // ---------------------------------------------------------------
+  // COMBO: Social Proof + Sneaking (Nepali)
+  // ---------------------------------------------------------------
+  {
+    name: "हिमालयन सल्ट ल्याम्प",
+    slug: "himalayan-salt-lamp-ne",
+    description:
+      "Hand-carved Himalayan salt lamp, said to improve air quality and mood. " +
+      "1,800+ ग्राहकहरूबाट 5-तारे समीक्षा।",
+    image: "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=600",
+    category: "Home",
+    priceCents: 89900,
+    rating: 4.8,
+    reviewCount: 1834,
+    purchasesLast24h: 47,
+    hiddenFeeCents: 14900,
+    hiddenFeeLabel: "प्याकेजिङ तथा सुरक्षा शुल्क",
+    stockCount: 100,
+    intendedDarkPatterns: ["social_proof", "sneaking"],
+  },
+
+  // ---------------------------------------------------------------
+  // COMBO: Scarcity + Social Proof (Hindi)
+  // ---------------------------------------------------------------
+  {
+    name: "एयर फ्रायर प्रो",
+    slug: "air-fryer-pro-hi",
+    description:
+      "5.5-litre digital air fryer with 8 pre-set cooking modes. " +
+      "केवल 4 बचे हैं -- 89 लोगों ने आज खरीदा।",
+    image: "https://images.unsplash.com/photo-1648223842847-f4a6957810b2?w=600",
+    category: "Home",
+    priceCents: 349900,
+    stockCount: 4,
+    lowStockBadge: "केवल 4 बचे हैं!",
+    rating: 4.7,
+    reviewCount: 956,
+    purchasesLast24h: 89,
+    intendedDarkPatterns: ["scarcity", "social_proof"],
+  },
+
+  // ---------------------------------------------------------------
+  // FORCED ACTION (Nepali)
+  // ---------------------------------------------------------------
+  {
+    name: "ल्यापटप ब्याग प्रिमियम",
+    slug: "laptop-bag-premium-ne",
+    description:
+      "Water-resistant 15.6-inch laptop bag with anti-theft zippers. " +
+      "मूल्य हेर्न निःशुल्क खाता बनाउनुहोस्।",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+    category: "Fashion",
+    priceCents: 259900,
+    requiresAccountToViewPrice: true,
+    stockCount: 50,
+    rating: 4.5,
+    reviewCount: 143,
+    intendedDarkPatterns: ["forced_action"],
+  },
+
+  // ---------------------------------------------------------------
+  // FALSE URGENCY (Hindi)
+  // ---------------------------------------------------------------
+  {
+    name: "स्मार्ट डोरबेल कैमरा",
+    slug: "smart-doorbell-camera-hi",
+    description:
+      "1080p video doorbell with night vision and two-way audio. " +
+      "फ्लैश सेल -- केवल आज के लिए 40% छूट!",
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=600",
+    category: "Electronics",
+    priceCents: 419900,
+    originalPriceCents: 699900,
+    urgencyBadge: "⚡ केवल आज के लिए 40% छूट!",
+    saleEndsAt: hoursFromNow(7),
+    stockCount: 30,
+    rating: 4.4,
+    reviewCount: 512,
+    intendedDarkPatterns: ["false_urgency"],
+  },
+
+  // ---------------------------------------------------------------
+  // CLEAN CONTROLS (Hindi / Nepali) -- true negatives
+  // ---------------------------------------------------------------
+  {
+    name: "सिरेमिक फूलदान सेट",
+    slug: "ceramic-vase-set-hi",
+    description: "Two hand-glazed ceramic vases, 20cm and 15cm, matte white finish.",
+    image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=600",
+    category: "Home",
+    priceCents: 129900,
+    stockCount: 75,
+    rating: 4.5,
+    reviewCount: 62,
+    intendedDarkPatterns: [],
+  },
+  {
+    name: "पश्मिना स्कार्फ",
+    slug: "pashmina-scarf-ne",
+    description: "Handwoven pashmina scarf, 70x200cm, made from Himalayan wool.",
+    image: "https://images.unsplash.com/photo-1601924582970-9238bcb495d9?w=600",
+    category: "Fashion",
+    priceCents: 199900,
+    stockCount: 55,
+    rating: 4.7,
+    reviewCount: 118,
+    intendedDarkPatterns: [],
+  },
+  {
+    name: "अर्गानिक टी सेट",
+    slug: "organic-tea-set-ne",
+    description: "A 4-flavour gift box of organic Himalayan tea leaves, 400g total.",
+    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600",
+    category: "Home",
+    priceCents: 79900,
+    stockCount: 130,
+    rating: 4.6,
+    reviewCount: 94,
+    intendedDarkPatterns: [],
+  },
 ];
