@@ -268,8 +268,7 @@ export const buildProducts = () => [
   {
     name: "Wireless Charging Pad",
     slug: "wireless-charging-pad",
-    description:
-      "10W fast-charging pad compatible with all Qi-enabled phones.",
+    description: "10W fast-charging pad compatible with all Qi-enabled phones.",
     image: "https://images.unsplash.com/photo-1622957461293-1276f56d6f8e?w=600",
     category: "Electronics",
     priceCents: 129900,
@@ -532,7 +531,8 @@ export const buildProducts = () => [
   {
     name: "सिरेमिक फूलदान सेट",
     slug: "ceramic-vase-set-hi",
-    description: "Two hand-glazed ceramic vases, 20cm and 15cm, matte white finish.",
+    description:
+      "Two hand-glazed ceramic vases, 20cm and 15cm, matte white finish.",
     image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=600",
     category: "Home",
     priceCents: 129900,
@@ -544,7 +544,8 @@ export const buildProducts = () => [
   {
     name: "पश्मिना स्कार्फ",
     slug: "pashmina-scarf-ne",
-    description: "Handwoven pashmina scarf, 70x200cm, made from Himalayan wool.",
+    description:
+      "Handwoven pashmina scarf, 70x200cm, made from Himalayan wool.",
     image: "https://images.unsplash.com/photo-1601924582970-9238bcb495d9?w=600",
     category: "Fashion",
     priceCents: 199900,
@@ -556,13 +557,155 @@ export const buildProducts = () => [
   {
     name: "अर्गानिक टी सेट",
     slug: "organic-tea-set-ne",
-    description: "A 4-flavour gift box of organic Himalayan tea leaves, 400g total.",
+    description:
+      "A 4-flavour gift box of organic Himalayan tea leaves, 400g total.",
     image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600",
     category: "Home",
     priceCents: 79900,
     stockCount: 130,
     rating: 4.6,
     reviewCount: 94,
+    intendedDarkPatterns: [],
+  },
+  // =================================================================
+  // BENIGN HARD NEGATIVES -- same surface feature as the dark version
+  // in each class, framed legitimately. These are the real test of
+  // whether the classifier keys on manipulative framing rather than
+  // just "contains a number / deadline / cancel flow".
+  // =================================================================
+
+  // --- Benign counterpart to Scarcity: static, verifiable stock count ---
+  {
+    name: "Terracotta Plant Pot (Medium)",
+    slug: "terracotta-plant-pot-medium",
+    description:
+      "Hand-thrown terracotta pot with drainage hole, 18cm diameter. " +
+      "In stock: 12 units.",
+    image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600",
+    category: "Home",
+    priceCents: 79900,
+    stockCount: 12,
+    rating: 4.5,
+    reviewCount: 44,
+    intendedDarkPatterns: [],
+  },
+
+  // --- Benign counterpart to False Urgency: a real stated deadline, not a countdown ---
+  {
+    name: "Handmade Ceramic Mug (Blue Glaze)",
+    slug: "handmade-ceramic-mug-blue",
+    description:
+      "Wheel-thrown ceramic mug, 350ml, dishwasher safe. " +
+      "Order in 2 hours for delivery in 3 days. Our winter sale ends 31 December.",
+    image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600",
+    category: "Home",
+    priceCents: 69900,
+    stockCount: 85,
+    rating: 4.6,
+    reviewCount: 71,
+    intendedDarkPatterns: [],
+  },
+
+  // --- Benign counterpart to Social Proof: static, verified aggregate ---
+  {
+    name: "Cast Iron Skillet 10-inch",
+    slug: "cast-iron-skillet-10inch",
+    description:
+      "Pre-seasoned cast iron skillet, oven-safe up to 500°F. " +
+      "958 sold. Rated by 200 verified buyers.",
+    image: "https://images.unsplash.com/photo-1593618998160-e34014e67546?w=600",
+    category: "Home",
+    priceCents: 189900,
+    rating: 4.7,
+    reviewCount: 200,
+    stockCount: 65,
+    intendedDarkPatterns: [],
+  },
+
+  // --- Benign counterpart to Confirmshaming: a plain "Cancel" ---
+  {
+    name: "Merino Wool Beanie",
+    slug: "merino-wool-beanie",
+    description:
+      "100% merino wool beanie, one size. You can unsubscribe from promotional " +
+      "emails anytime from your account settings -- no discount popup, just a " +
+      'plain "Cancel" if you change your mind.',
+    image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=600",
+    category: "Fashion",
+    priceCents: 89900,
+    stockCount: 90,
+    rating: 4.5,
+    reviewCount: 58,
+    intendedDarkPatterns: [],
+  },
+
+  // --- Benign counterpart to Forced Action: sign-in that gates nothing ---
+  {
+    name: "Recycled Glass Tumbler Set",
+    slug: "recycled-glass-tumbler-set",
+    description:
+      "Set of 4 hand-blown tumblers made from recycled glass, 300ml each. " +
+      "Sign in for member pricing and order tracking -- price and checkout are " +
+      "fully available as a guest either way.",
+    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600",
+    category: "Home",
+    priceCents: 109900,
+    requiresAccountToViewPrice: false,
+    stockCount: 70,
+    rating: 4.4,
+    reviewCount: 37,
+    intendedDarkPatterns: [],
+  },
+
+  // --- Benign counterpart to Obstruction: easy cancellation ---
+  {
+    name: "Monthly Book Club Box",
+    slug: "monthly-book-club-box",
+    description:
+      "A curated novel delivered monthly, with reading notes and a tote bag. " +
+      "You can cancel anytime from your account settings, or contact us for help " +
+      "if you'd rather we do it for you.",
+    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600",
+    category: "Subscription",
+    priceCents: 129900,
+    isSubscription: true,
+    obstructedCancellation: false,
+    obstructionNote:
+      "Cancel anytime from Account Settings > Subscriptions, or contact us for help.",
+    rating: 4.6,
+    reviewCount: 112,
+    intendedDarkPatterns: [],
+  },
+
+  // --- Benign counterpart to Sneaking: an advertised, upfront discount ---
+  {
+    name: "Bamboo Cutting Board Set",
+    slug: "bamboo-cutting-board-set",
+    description:
+      "Set of 3 bamboo cutting boards, sustainably sourced. " +
+      "20% off this week -- discount already applied to the price shown, no fees added at checkout.",
+    image: "https://images.unsplash.com/photo-1584479898061-15742e14f50d?w=600",
+    category: "Home",
+    priceCents: 71920,
+    originalPriceCents: 89900,
+    hiddenFeeCents: 0,
+    stockCount: 100,
+    rating: 4.7,
+    reviewCount: 84,
+    intendedDarkPatterns: [],
+  },
+
+  // --- Plain benign, no special framing at all ---
+  {
+    name: "Linen Table Runner",
+    slug: "linen-table-runner",
+    description: "100% linen table runner, 180cm, machine washable.",
+    image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600",
+    category: "Home",
+    priceCents: 64900,
+    stockCount: 110,
+    rating: 4.4,
+    reviewCount: 26,
     intendedDarkPatterns: [],
   },
 ];

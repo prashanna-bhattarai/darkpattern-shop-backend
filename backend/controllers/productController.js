@@ -39,7 +39,7 @@ export const searchProducts = async (req, res) => {
     if (!q || !q.trim()) {
       return res.status(200).json({ products: [] });
     }
-    const regex = new RegExp(q.trim(), "i"); // case-insensitive, matches Hindi/Nepali too
+    const regex = new RegExp(q.trim(), "i");
     const products = await Product.find({
       $or: [{ name: regex }, { description: regex }, { category: regex }],
     }).limit(30);
