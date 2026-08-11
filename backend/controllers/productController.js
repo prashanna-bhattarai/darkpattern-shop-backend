@@ -2,12 +2,29 @@ import Product from "../models/Product.js";
 
 export const getProducts = async (req, res) => {
   try {
-    const { category, section } = req.query;
+    const { category, section, page = 1, limit = 12 } = req.query;
     const filter = {};
     if (category) filter.category = category;
-    filter.section = section || "shop"; // defaults to the main shop, not new-arrivals
-    const products = await Product.find(filter).sort({ createdAt: -1 });
-    res.status(200).json({ products });
+    filter.section = section || "shop";
+
+    const pageNum = Math.max(1, parseInt(page));
+    const limitNum = Math.max(1, parseInt(limit));
+    const skip = (pageNum - 1) * limitNum;
+
+    const [products, total] = await Promise.all([
+      Product.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limitNum),
+      Product.countDocuments(filter),
+    ]);
+
+    res.status(200).json({
+      products,
+      pagination: {
+        page: pageNum,
+        limit: limitNum,
+        total,
+        totalPages: Math.ceil(total / limitNum),
+      },
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
