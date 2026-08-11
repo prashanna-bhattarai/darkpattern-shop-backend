@@ -1,9 +1,10 @@
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import User from "../models/User.js";
-import { sendResetEmail } from "../utils/sendEmail.js";
+import { sendResetEmail, sendWelcomeEmail } from "../utils/sendEmail.js";
 
-const signToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+const signToken = (id) =>
+  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
 const setTokenCookie = (res, token) => {
   res.cookie("token", token, {
@@ -33,6 +34,28 @@ export const register = async (req, res) => {
     const token = signToken(user._id);
     setTokenCookie(res, token);
 
+    sendWelcomeEmail(user.email, user.name); // fire-and-forget, don't block the response
+
+    res.status(201).json({
+      token,
+      user: { id: user._id, name: user.name, email: user.email },
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+    const existing = await User.findOne({ email: email.toLowerCase() });
+    if (existing) {
+      return res
+        .status(409)
+        .json({ message: "An account with this email already exists" });
+    }
+
+    const user = await User.create({ name, email, password });
+    const token = signToken(user._id);
+    setTokenCookie(res, token);
+
     res.status(201).json({
       token,
       user: { id: user._id, name: user.name, email: user.email },
@@ -46,7 +69,9 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
     }
 
     const user = await User.findOne({ email: email.toLowerCase() });
@@ -89,7 +114,8 @@ export const forgotPassword = async (req, res) => {
     // this itself avoids a common (and genuinely harmful) dark pattern where
     // a site leaks which emails are registered via the forgot-password flow.
     const genericResponse = {
-      message: "If an account with that email exists, a reset link has been sent.",
+      message:
+        "If an account with that email exists, a reset link has been sent.",
     };
 
     if (!user) {
@@ -114,7 +140,9 @@ export const resetPassword = async (req, res) => {
     const { password } = req.body;
 
     if (!password || password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
     }
 
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
@@ -124,7 +152,9 @@ export const resetPassword = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(400).json({ message: "Reset link is invalid or has expired" });
+      return res
+        .status(400)
+        .json({ message: "Reset link is invalid or has expired" });
     }
 
     user.password = password;
@@ -132,7 +162,9 @@ export const resetPassword = async (req, res) => {
     user.resetPasswordExpires = undefined;
     await user.save();
 
-    res.status(200).json({ message: "Password has been reset. You can now log in." });
+    res
+      .status(200)
+      .json({ message: "Password has been reset. You can now log in." });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -142,10 +174,14 @@ export const changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
     if (!currentPassword || !newPassword) {
-      return res.status(400).json({ message: "Current and new password are both required" });
+      return res
+        .status(400)
+        .json({ message: "Current and new password are both required" });
     }
     if (newPassword.length < 6) {
-      return res.status(400).json({ message: "New password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "New password must be at least 6 characters" });
     }
 
     const user = await User.findById(req.user._id);
@@ -169,7 +205,9 @@ export const updateProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
     if (name) user.name = name;
     await user.save();
-    res.status(200).json({ user: { id: user._id, name: user.name, email: user.email } });
+    res
+      .status(200)
+      .json({ user: { id: user._id, name: user.name, email: user.email } });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
